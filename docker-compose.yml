@@ -60,6 +60,27 @@ services:
 
       # additional settings
       - MM_SERVICESETTINGS_SITEURL
+      - MM_FILESETTINGS_DRIVERNAME
+            
+      ## Files
+      - MM_FILESETTINGS_DRIVERNAME
+      - MM_FILESETTINGS_AMAZONS3BUCKET
+      - MM_FILESETTINGS_AMAZONS3PATHPREFIX
+      - MM_FILESETTINGS_AMAZONS3REGION
+      - MM_FILESETTINGS_AMAZONS3ENDPOINT
+      - MM_FILESETTINGS_AMAZONS3ACCESSKEYID
+      - MM_FILESETTINGS_AMAZONS3SECRETACCESSKEY
+
+      # Emails
+      - MM_EMAILSETTINGS_ENABLESMTPAUTH
+      - MM_EMAILSETTINGS_SMTPSERVER
+      - MM_EMAILSETTINGS_SMTPPORT
+      - MM_EMAILSETTINGS_SMTPUSERNAME
+      - MM_EMAILSETTINGS_SMTPPASSWORD
+      - MM_EMAILSETTINGS_CONNECTIONSECURITY
+ 
+      # Monitoring
+      - MM_METRICSSETTINGS_ENABLE
 
 # If you use rolling image tags and feel lucky watchtower can automatically pull new images and
 # instantiate containers from it. https://containrrr.dev/watchtower/
