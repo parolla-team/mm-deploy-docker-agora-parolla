@@ -1,0 +1,1 @@
+sudo docker exec -it  $(sudo docker ps -aqf "name=mm-deploy-docker-agora-parolla-postgres-1") psql -h localhost -U mmuser -d mattermost -c "$(cat ./scripts/default_colors.sql)"
