@@ -12,12 +12,21 @@ Options
 EOF
 }
 
+
 issue_cert_standalone() {
-  docker run -it --rm --name certbot -p 80:80 \
-    -v "${1}/etc/letsencrypt:/etc/letsencrypt" \
-    -v "${1}/lib/letsencrypt:/var/lib/letsencrypt" \
-    certbot/certbot certonly --standalone -d "${2}"
-}
+	  sudo docker run -it --rm --name certbot -p 80:80 \
+		      -v "${1}/etc/letsencrypt:/etc/letsencrypt" \
+		          -v "${1}/lib/letsencrypt:/var/lib/letsencrypt" \
+			      certbot/certbot certonly --standalone -d "${2}"
+		      }
+
+issue_cert_standalone_no_port() {
+	  sudo docker run -it --rm --name certbot \
+		      -v "${1}/etc/letsencrypt:/etc/letsencrypt" \
+		          -v "${1}/lib/letsencrypt:/var/lib/letsencrypt" \
+			      -v "/usr/share/nginx/html:/data/letsencrypt" \
+			          certbot/certbot certonly --webroot --webroot-path="/data/letsencrypt" -d "${2}"
+			  }
 
 authenticator_to_webroot() {
   sed -i 's/standalone/webroot/' "${1}"/etc/letsencrypt/renewal/"${2}".conf
