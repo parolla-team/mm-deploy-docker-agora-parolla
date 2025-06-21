@@ -17,7 +17,7 @@ issue_cert_standalone() {
 	  sudo docker run -it --rm --name certbot -p 80:80 \
 		      -v "${1}/etc/letsencrypt:/etc/letsencrypt" \
 		          -v "${1}/lib/letsencrypt:/var/lib/letsencrypt" \
-			      certbot/certbot certonly --standalone -d "${2}"
+			      certbot/certbot certonly --force-renewal --non-interactive --agree-tos --standalone -d "${2}"
 		      }
 
 issue_cert_standalone_no_port() {
@@ -25,7 +25,7 @@ issue_cert_standalone_no_port() {
 		      -v "${1}/etc/letsencrypt:/etc/letsencrypt" \
 		          -v "${1}/lib/letsencrypt:/var/lib/letsencrypt" \
 			      -v "/usr/share/nginx/html:/data/letsencrypt" \
-			          certbot/certbot certonly --webroot --webroot-path="/data/letsencrypt" -d "${2}"
+			          certbot/certbot certonly --force-renewal --non-interactive --agree-tos --webroot --webroot-path="/data/letsencrypt" -d "${2}"
 			  }
 
 authenticator_to_webroot() {
